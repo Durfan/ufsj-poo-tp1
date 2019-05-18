@@ -1,28 +1,8 @@
+import java.util.List;
 
 public class Aluno extends Colaboradores {
 	
-	private String nome;
-	private Boolean mestrado;
-	
 	private int count_andamento;
-	
-	private Projeto projetos = new Projeto();
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Boolean getMestrado() {
-		return mestrado;
-	}
-
-	public void setMestrado(Boolean mestrado) {
-		this.mestrado = mestrado;
-	}
 
 	public int getCount_andamento() {
 		return count_andamento;
@@ -32,19 +12,17 @@ public class Aluno extends Colaboradores {
 		this.count_andamento = count_andamento;
 	}
 
-	public Projeto getProjetos() {
-		return projetos;
+	@Override
+	public boolean addProjeto(Projeto projeto) {
+		List<Object> projetos = this.getProjetos();
+		if (projetos.size() < 2) {
+			super.addProjeto(projeto);
+			return true;
+		}
+		else {
+			System.out.println("Aluno já possui 2 projetos.");
+		}
+		return false;
 	}
 
-	public void setProjetos(Projeto projetos) {
-		this.projetos = projetos;
-	}
-	
-	public String imprimir() {
-		String conteudo = "Nome: " + nome + "\n";
-		conteudo = conteudo + "Graduacao: " + mestrado + "\n";		
-		
-		return conteudo;
-	}
-	
 }
